@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .calculator {
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Income Tax Calculator</h1>
+    <div class="calculator">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter your name">
+
+      <label for="pan">PAN (Permanent Account Number):</label>
+      <input type="text" id="pan" placeholder="Enter your PAN">
+
+      <label for="salary">Income From Salary:</label>
+      <input type="number" id="salary" placeholder="Enter income from salary">
+
+      <label for="rent">Income From Rent:</label>
+      <input type="number" id="rent" placeholder="Enter income from rent">
+
+      <label for="otherIncomes">Income from Other Sources:</label>
+      <input type="number" id="otherIncomes" placeholder="Enter income from other sources">
+
+      <label for="insurance">Insurance Deduction:</label>
+      <input type="number" id="insurance" placeholder="Enter insurance deduction">
+
+      <label for="tuition">Tuition Fees Deduction:</label>
+      <input type="number" id="tuition" placeholder="Enter tuition fees deduction">
+
+      <label for="otherDeductions">Other Deductions:</label>
+      <input type="number" id="otherDeductions" placeholder="Enter other deductions">
+
+      <button onclick="calculateTax()">Calculate Tax</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    function calculateTax() {
+    var name = document.getElementById("name").value;
+    var pan = document.getElementById("pan").value;
+    var salary = parseFloat(document.getElementById("salary").value) || 0;
+    var rent = parseFloat(document.getElementById("rent").value) || 0;
+    var otherIncomes = parseFloat(document.getElementById("otherIncomes").value) || 0;
+    var insurance = parseFloat(document.getElementById("insurance").value) || 0;
+    var tuition = parseFloat(document.getElementById("tuition").value) || 0;
+    var otherDeductions = parseFloat(document.getElementById("otherDeductions").value) || 0;
+
+    // Check if any of the input fields are empty
+    if (!name || !pan || !salary || !rent || !otherIncomes || !insurance || !tuition || !otherDeductions) {
+        alert("Please fill in all the input fields.");
+        return;
+    }
+
+    var totalIncome = salary + rent + otherIncomes;
+    var totalDeduction = insurance + tuition + otherDeductions;
+    var standardDeduction = 50000; // Example: Standard deduction is set to 50,000
+
+    var taxableIncome = totalIncome - standardDeduction - totalDeduction;
+    var tax = calculateIncomeTax(taxableIncome);
+
+    var result = name + ", your estimated tax is: ₹" + tax.toFixed(2); // Using ₹ for Rupee symbol
+
+    // Display tax summary
+    result += "<h2>Tax Summary</h2>";
+    result += "<p>Total Income: ₹" + totalIncome.toFixed(2) + "</p>"; // Using ₹ for Rupee symbol
+    result += "<p>Total Deduction: ₹" + totalDeduction.toFixed(2) + "</p>"; // Using ₹ for Rupee symbol
+    result += "<p>Standard Deduction: ₹" + standardDeduction.toFixed(2) + "</p>"; // Using ₹ for Rupee symbol
+    result += "<p>Taxable Income: ₹" + taxableIncome.toFixed(2) + "</p>"; // Using ₹ for Rupee symbol
+
+    document.getElementById("result").innerHTML = result;
+}
+  </script>
+</body>
+</html>
