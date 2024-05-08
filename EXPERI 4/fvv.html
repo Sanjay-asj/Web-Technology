@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Validation Form</title>
+<style>
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #a7b7ff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #001aff;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .error {
+    color: red;
+  }
+
+  input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #0026ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #formData {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+  }
+
+  #formData h3 {
+    margin-top: 0;
+  }
+
+  #formData p {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Form Validation</h2>
+
+  <form id="myForm" onsubmit="return validateForm()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><span class="error" id="nameError"></span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><span class="error" id="emailError"></span>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"><span class="error" id="passwordError"></span>
+    </div>
+    <div class="form-group">
+      <label for="pincode">Pincode:</label>
+      <input type="text" id="pincode" name="pincode"><span class="error" id="pincodeError"></span>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber"><span class="error" id="phoneError"></span>
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address">
+      <p id="c1" style="color:red;"></p>
+    </div>
+    
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city">
+    </div>
+    <div class="form-group">
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob">
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label><br>
+      <input type="radio" id="male" name="gender" value="Male"> <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female"> <label for="female">Female</label>
+      <input type="radio" id="other" name="gender" value="Other"> <label for="other">Other</label>
+      <span class="error" id="genderError"></span>
+    </div>
+    <div class="form-group">
+      <label for="languages">Known Languages:</label><br>
+      <input type="checkbox" id="c" name="language" value="C"> <label for="c">C</label>
+      <input type="checkbox" id="cpp" name="language" value="C++"> <label for="cpp">C++</label>
+      <input type="checkbox" id="java" name="language" value="Java"> <label for="java">Java</label>
+      <input type="checkbox" id="python" name="language" value="Python"> <label for="python">Python</label>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id="formData"></div>
+
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var pincode = document.getElementById("pincode").value;
+      var phoneNumber = document.getElementById("phoneNumber").value;
+      var address = document.getElementById("address").value;
+      var city = document.getElementById("city").value;
+      var dob = document.getElementById("dob").value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+
+      var namePattern = /^[A-Za-z\s]+{4}$/;
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var passwordPattern = /^[A-Za-z][A-Za-z0-9!@#$%^&*]{7,}$/;
+      var pincodePattern = /^\d{6}$/;
+      var phoneNumberPattern = /^\d{10}$/;
+
+      var isValid = true;
+
+       
+      if (!name.match(namePattern)) {
+        document.getElementById("nameError").innerHTML = "Name must contain only alphabets and spaces";
+        isValid = false;
+      } else {
+        document.getElementById("nameError").innerHTML = "";
+      }
+
+      
+      if (!email.match(emailPattern)) {
+        document.getElementById("emailError").innerHTML = "Invalid email format";
+        isValid = false;
+      } else {
+        document.getElementById("emailError").innerHTML = "";
+      }
+
+      
+      if (!password.match(passwordPattern)) {
+        document.getElementById("passwordError").innerHTML = "Password must start with alphabet, contain at least 1 number, and 8 characters long";
+        isValid = false;
+      } else {
+        document.getElementById("passwordError").innerHTML = "";
+      }
+
+      
+      if (!pincode.match(pincodePattern)) {
+        document.getElementById("pincodeError").innerHTML = "Pincode must contain 6 numbers";
+        isValid = false;
+      } else {
+        document.getElementById("pincodeError").innerHTML = "";
+      }
+
+      
+      if (!phoneNumber.match(phoneNumberPattern)) {
+        document.getElementById("phoneError").innerHTML = "Phone number must contain 10 numbers";
+        isValid = false;
+      } else {
+        document.getElementById("phoneError").innerHTML = "";
+      }
+      if(address==""){
+        document.getElementById("c1").innerHTML="Enter your address";
+      }
+
+      
+      if (!gender) {
+        document.getElementById("genderError").innerHTML = "Please select a gender";
+        isValid = false;
+      } else {
+        document.getElementById("genderError").innerHTML = "";
+      }
+
+      
+      if (isValid) {
+        var formDataDiv = document.getElementById("formData");
+        var languages = "";
+        var checkboxes = document.getElementsByName("language");
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            languages += checkboxes[i].value + ", ";
+          }
+        }
+        languages = languages.slice(0, -2); // Remove the trailing comma and space
+        formDataDiv.innerHTML = "<h3>Form Data:</h3>" +
+          "<p><strong>Name:</strong> " + name + "</p>" +
+          "<p><strong>Email:</strong> " + email + "</p>" +
+          "<p><strong>Password:</strong> " + password + "</p>" +
+          "<p><strong>Pincode:</strong> " + pincode + "</p>" +
+          "<p><strong>Phone Number:</strong> " + phoneNumber + "</p>" +
+          "<p><strong>Address:</strong> " + address + "</p>" +
+          "<p><strong>City:</strong> " + city + "</p>" +
+          "<p><strong>Date of Birth:</strong> " + dob + "</p>" +
+          "<p><strong>Gender:</strong> " + gender.value + "</p>" +
+          "<p><strong>Known Languages:</strong> " + languages + "</p>";
+      }
+
+      return false;
+    }
+  </script>
+</div>
+
+</body>
+</html>
