@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap JS Bundle -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Custom CSS for additional styling */
+        body {
+            background-color: #ffffff;
+        }
+        .card {
+            width: 40rem;
+            background-color: #f0f0f0; /* Changed card background color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mt-4 mb-4">
+            <h1 class="display-4">EMPLOYEE DETAILS FORM</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="card p-4 shadow">
+                <form action="http://localhost:8000/login" method="get">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Employee Name:</label>
+                        <input class="form-control" type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="id">ID:</label>
+                        <input class="form-control" type="text" id="id" name="id" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Gender:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="gender-male" name="gender" value="Male" required>
+                            <label class="form-check-label" for="gender-male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="gender-female" name="gender" value="Female" required>
+                            <label class="form-check-label" for="gender-female">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="branch">Branch:</label>
+                        <select class="form-select" id="branch" name="branch" required>
+                            <option value="HR">HR</option>
+                            <option value="IT">IT</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="mobileno">Mobile Number:</label>
+                        <input class="form-control" type="tel" id="mobileno" name="mobileno" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="address">Address:</label>
+                        <textarea class="form-control" id="address" name="address" required></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
