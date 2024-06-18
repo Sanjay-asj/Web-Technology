@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Registration Form (GET)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 800px; /* Increased width */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #343a40;
+            border-bottom: 2px solid #6c757d;
+            padding-bottom: 10px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            margin-bottom: 15px;
+        }
+        .btn {
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header-text {
+            text-align: center;
+            flex-grow: 1;
+        }
+    </style>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="header">
+            <img src="C:\Users\sanja\Downloads\klogo.png" height="100px" width="100px"/>
+            <div class="header-text">
+                <h3>KONGU ENGINEERING COLLEGE, PERUNDURAI, ERODE- 638 060</h3>
+                <h4>(Autonomous)</h4>
+                <h4>DEPARTMENT OF INFORMATION TECHNOLOGY</h4>
+                <h4>Wi-Fi Connectivity - Registration Form</h4>
+            </div>
+            <img src="C:\Users\sanja\Downloads\logo.jpg" height="100px" width="100px"/>
+        </div>
+        <h1 class="text-center mb-4">WI-FI REGISTRATION</h1>
+        <form id="form" method="get">
+            <h2>General Information</h2>
+            <label for="rollno" class="form-label">Roll Number:</label>
+            <input type="text" class="form-control mb-3" id="rollno" name="rollno" required>
+
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control mb-3" id="name" name="name" required>
+
+            <label for="sex" class="form-label">Sex:</label>
+            <select class="form-control mb-3" id="sex" name="sex" required>
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="course" class="form-label">Course:</label>
+            <input type="text" class="form-control mb-3" id="course" name="course" required>
+
+            <label for="branch" class="form-label">Branch:</label>
+            <input type="text" class="form-control mb-3" id="branch" name="branch" required>
+
+            <label for="duration" class="form-label">Course Duration (from-to):</label>
+            <input type="text" class="form-control mb-3" id="duration" name="duration" placeholder="e.g., 2021-2025" required>
+
+            <label for="roomno" class="form-label">Hostel Room No:</label>
+            <input type="text" class="form-control mb-3" id="roomno" name="roomno" required>
+
+            <label for="email" class="form-label">Email ID:</label>
+            <input type="email" class="form-control mb-3" id="email" name="email" required>
+
+            <h2>Technical Information</h2>
+            <label for="device" class="form-label">Device (Desktop or Laptop):</label>
+            <input type="text" class="form-control mb-3" id="device" name="device" required>
+
+            <label for="make" class="form-label">Make:</label>
+            <input type="text" class="form-control mb-3" id="make" name="make" required>
+
+            <label for="model" class="form-label">Model:</label>
+            <input type="text" class="form-control mb-3" id="model" name="model" required>
+
+            <label for="serialno" class="form-label">Serial No:</label>
+            <input type="text" class="form-control mb-3" id="serialno" name="serialno" required>
+
+            <label for="macaddress" class="form-label">Wireless MAC Address:</label>
+            <input type="text" class="form-control mb-3" id="macaddress" name="macaddress" required>
+
+            <label for="osversion" class="form-label">Operating System Version:</label>
+            <input type="text" class="form-control mb-3" id="osversion" name="osversion" required>
+
+            <label for="antivirus" class="form-label">Antivirus Installed and Version:</label>
+            <input type="text" class="form-control mb-3" id="antivirus" name="antivirus" required>
+
+            <button type="submit" class="btn btn-primary me-2" onclick="set('/insert', event)">Register</button>
+            <button type="submit" class="btn btn-danger me-2" onclick="set('/delete', event)">Delete</button>
+            <button type="submit" class="btn btn-warning me-2" onclick="set('/update', event)">Update</button>
+            <button type="submit" class="btn btn-info" onclick="set('/display', event)">View Registrations</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function set(path, event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            document.getElementById('form').action = 'http://localhost:7050' + path;
+            document.getElementById('form').submit(); // Submit the form after setting the action
+        }
+    </script>
+</body>
+</html>
